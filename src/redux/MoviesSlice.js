@@ -18,6 +18,7 @@ const MoviesSlice = createSlice({
         .addCase(fetchMoviesList.fulfilled, (state, action) => {
             state.isLoading = false;
             state.error = null;
+            state.moviesList = []
             state.moviesList = action.payload.results;
         })
         .addCase(fetchMoviesList.rejected, (state, action) => {

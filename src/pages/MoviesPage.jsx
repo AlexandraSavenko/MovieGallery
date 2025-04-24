@@ -1,51 +1,44 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useLocation, useSearchParams } from "react-router-dom";
-import { fetchdata } from "../fetchdata";
+// import { fetchdata } from "../fetchdata";
 import MovieList from "../components/MovieList/MovieList";
 import SearchForm from "../components/SearchForm/SearchForm";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchMoviesList } from "../redux/MoviesOps";
+import { moviesArr } from "../redux/MoviesSlice";
 
 export default function MoviesPage() {
   // const location = useLocation();
 
-  const [errorQuery, setErrorQuery] = useState(null);
-  const [movies, setMovies] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const dispatch = useDispatch()
+  // const [errorQuery, setErrorQuery] = useState(null);
+  // const [movies, setMovies] = useState([]);
+  // const [loading, setLoading] = useState(false);
+  // const [error, setError] = useState(false);
   const [params, setSearchParams] = useSearchParams();
   const movieName = params.get("movieName");
 
+  const movies = useSelector(moviesArr)
   async function handleSubmit(value) {
     if (!value.trim()) {
-      setErrorQuery(true);
+      // setErrorQuery(true);
       return;
     }
-    setErrorQuery(null);
+    // setErrorQuery(null);
     setSearchParams({ movieName: value });
   }
 
   useEffect(() => {
     if (!movieName) return;
-    async function fetchedData() {
-      try {
-        setLoading(true);
-        const data = await fetchdata(1, movieName, "search/movie");
-        setMovies(data.results);
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchedData();
+    dispatch(fetchMoviesList({page: 1, query: movieName, endPoint: 'search/movie'}))
   }, [movieName]);
-  // const movieName = params.get("movieName");
   return (
     <div>
       <SearchForm onSubmit={handleSubmit} />
-      {errorQuery && <p>You need to fill in your query!</p>}
+      {/* {errorQuery && <p>You need to fill in your query!</p>}
       {error && <b>Error!!!</b>}
-      {loading && <b>LOADING...</b>}
-      {movies.length > 0 && <MovieList allMovies={movies} />}
+      {loading && <b>LOADING...</b>} */}
+      {movieName && movies.length > 0 && <MovieList allMovies={movies} />}
     </div>
   );
 }
