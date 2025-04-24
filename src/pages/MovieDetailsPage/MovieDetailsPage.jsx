@@ -6,51 +6,41 @@ import {
   useLocation,
   useParams,
 } from "react-router-dom";
-import { getMovie } from "../../fetchdata";
+import { getMovie } from "../../redux/MoviesOps";
 import css from "./MovieDetailsPage.module.css";
-import NotFoundPage from "../NotFoundPage";
+// import NotFoundPage from "../NotFoundPage";
 import clsx from "clsx";
+import { useDispatch, useSelector } from "react-redux";
+import { theMovie } from "../../redux/MoviesSlice";
+
+
 export default function MovieDetailsPage() {
   const location = useLocation();
   const backLinkRef = useRef(location.state);
   const { movieId } = useParams();
-  const [movieData, setMovieData] = useState(null);
   const [genres, setGenres] = useState([]);
   const [score, setScore] = useState(0);
   const [posterPath, setPosterPath] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
 
-  useEffect(() => {
-    async function fetchMovieData() {
-      try {
-        setLoading(true);
-        setError(false);
-        const data = await getMovie(movieId);
-        setMovieData(data);
-        const movieGen = data.genres.map((genre) => genre.name).join(", ");
+  const dispatch = useDispatch()
+  const movieData = useSelector(theMovie)
+  const movieInfo = () => {
+    if(!movieData) return;
+    const movieGen = movieData.genres.map((genre) => genre.name).join(", ");
         setGenres(movieGen);
-        const userScore = Math.floor(data.vote_average);
+        const userScore = Math.floor(movieData.vote_average);
         setScore(`User score: ${userScore}%`);
-        setPosterPath(data.poster_path);
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchMovieData();
+        setPosterPath(movieData.poster_path);
+  }
+  
+  useEffect(() => {
+    dispatch(getMovie(movieId));
+    movieInfo()
   }, [movieId]);
-  if (error) {
-    return <NotFoundPage />;
-  }
-  if (loading) {
-    return <b>Loading...</b>;
-  }
+
   function linksActive(props) {
     return clsx(css.link, props.isActive && css.isActive);
   }
-  console.log(posterPath);
 
   return (
     movieData && (

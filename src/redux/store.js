@@ -5,6 +5,11 @@ import moviesReducer from './MoviesSlice'
 export const store = configureStore({
     reducer: {
         movies: moviesReducer,
+       
         // searchMovies: searchMoviesReduser,
-    },
+    }, 
+    middleware: (getDefaultMiddleware) =>
+            getDefaultMiddleware({
+              serializableCheck: false,
+            }),
 });

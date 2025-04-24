@@ -1,7 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {fetchMoviesList} from './MoviesOps'
+import { getMovie } from "../redux/MoviesOps";
+import { getInfo } from "../redux/MoviesOps";
 
-export const moviesArr = state => state.movies.moviesList
+export const moviesArr = state => state.movies.moviesList;
+export const theMovie = state => state.movies.movieDetails;
+export const movieCa = state => state.movies.movieCast.cast;
+
+
 
 const MoviesSlice = createSlice({
     name: 'moviesList',
@@ -9,6 +15,8 @@ const MoviesSlice = createSlice({
         moviesList: [],
         isLoading: false,
         error: null,
+        movieDetails: null,
+        movieCast: [],
     },
     extraReducers: (builder) => {
         builder.addCase(fetchMoviesList.pending, (state) => {
@@ -25,6 +33,30 @@ const MoviesSlice = createSlice({
             state.isLoading = false;
             state.error = action.payload;
         })
+        .addCase(getMovie.pending, (state) => {
+            state.isLoading = true;
+            state.error = null;
+          })
+          .addCase(getMovie.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.movieDetails = action.payload;            
+          })
+          .addCase(getMovie.rejected, (state, action) => {
+            state.isLoading = false;
+            state.error = action.payload;
+          })
+          .addCase(getInfo.pending, (state) => {
+            state.isLoading = true;
+            state.error = null;
+          })
+          .addCase(getInfo.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.movieCast = action.payload;            
+          })
+          .addCase(getInfo.rejected, (state, action) => {
+            state.isLoading = false;
+            state.error = action.payload;
+          })
     }
 })
 

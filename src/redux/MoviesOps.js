@@ -23,13 +23,30 @@ async ({page = 1, query = "", endPoint}, thunkAPI) => {
 }
 )
 
-export const getMovie = createAsyncThunk (
-    'movies/getMovie', async ({movieId}, thunkAPI) => {
-        try {
+
+export const getMovie = createAsyncThunk(
+    'movies/getMovie',
+    async (movieId, thunkAPI) => {
+      try {
         const response = await axios.get(`/movie/${movieId}`);
         return response.data;
-        } catch (error) {
-            return thunkAPI.rejectWithValue(error.message)
-        }
+      } catch (error) {
+        return thunkAPI.rejectWithValue(error.message);
+      }
     }
-) 
+  );
+
+  export const getInfo = createAsyncThunk(
+    'movies/getInfo',
+    async ({movieId, endPoint}, thunkAPI) => {
+      try {
+        const response = await axios.get(`/movie/${movieId}/${endPoint}`, {
+            params: { language: "en-US" },
+          });
+        return response.data;
+      } catch (error) {
+        return thunkAPI.rejectWithValue(error.message);
+      }
+    }
+  );
+  
