@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {fetchMoviesList} from './MoviesOps'
 
-
+export const moviesArr = state => state.movies.moviesList
 
 const MoviesSlice = createSlice({
     name: 'moviesList',
@@ -18,7 +18,7 @@ const MoviesSlice = createSlice({
         .addCase(fetchMoviesList.fulfilled, (state, action) => {
             state.isLoading = false;
             state.error = null;
-            state.weatherData = action.payload;
+            state.moviesList = action.payload.results;
         })
         .addCase(fetchMoviesList.rejected, (state, action) => {
             state.isLoading = false;
