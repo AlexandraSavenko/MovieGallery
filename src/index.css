@@ -20,11 +20,21 @@
   --first-text-color: #d9dad7;
 
   --first-hover-color: #f96d00;
-  --second-hover-color: #c24d2c; 
+}
+
+
+[data-theme="light"]{
+  --first-background-color: #d9dad7;
+  --second-background-color: #dbd8e3;
+  --third-background-color: #2d4059;
+  --fourth-background-color: #3e4a61;
+
+  --first-text-color: #393e46;
+
+  --first-hover-color: #c24d2c;
 }
 
 /*https://www.shecodes.io/palettes/633, /622*/
-
 
 ul,
 li {
