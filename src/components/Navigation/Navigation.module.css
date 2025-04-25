@@ -1,8 +1,13 @@
 .header {
   border-bottom: 1px solid gray;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .list {
   display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 1rem;
 }
 .link {
@@ -10,4 +15,9 @@
 }
 .isActive {
   color: brown;
+}
+
+.homeIcon{
+  height: 21px;
+  width: 21px;
 }

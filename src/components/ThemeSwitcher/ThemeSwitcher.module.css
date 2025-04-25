@@ -1,0 +1,23 @@
+.themeBox{
+    display: flex;
+    gap: 4px;
+}
+.themeBtn{
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 1px solid black;
+
+}
+
+.themeBtn:nth-child(1){
+    background-color: white;
+}
+
+.themeBtn:nth-child(2){
+    background-color: black;
+}
+.active{
+    border-color: orangered;
+}

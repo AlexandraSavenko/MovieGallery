@@ -24,6 +24,7 @@ export default function MovieDetailsPage() {
 
   const dispatch = useDispatch()
   const movieData = useSelector(theMovie)
+  
   const movieInfo = () => {
     if(!movieData) return;
     const movieGen = movieData.genres.map((genre) => genre.name).join(", ");
