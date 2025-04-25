@@ -6,21 +6,31 @@
   gap: 16px;
   margin-top: 10px;
   padding-bottom: 20px;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid var(--first-text-color);
+}
+
+.movieInfoWrap ul {
+  padding: 8px;
+}
+.movieInfoWrap img{
+  width: 50vw;
+  height: auto;
 }
 .addWrap {
   padding: 8px;
+  background-color: var(--second-background-color);
+  border-bottom: 1px solid var(--first-text-color);
+
 }
 .addList {
   display: flex;
   flex-direction: column;
-  border-bottom: 1px solid gray;
 }
 .link {
-  color: black;
+  color: var(--first-text-color);
 }
 .isActive {
-  color: brown;
+  color: var(--first-hover-color);
 }
 .goBackLink {
   border-radius: 8px;
@@ -29,12 +39,19 @@
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: var(--second-background-color);
   cursor: pointer;
-  transition: border-color 0.25s;
-  color: white;
+  transition: border-color 0.25s, color 0.25s;
+  color: var(--first-text-color);
   display: inline-block;
 }
 .goBackLink:hover {
-  border-color: #646cff;
+  color: var(--second-hover-color);
+  border-color: var(--second-hover-color);
+}
+
+@media screen and (min-width: 860px) {
+  .innerWrap{
+    display: flex;
+  }
 }

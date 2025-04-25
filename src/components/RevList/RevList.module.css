@@ -1,4 +1,4 @@
 .name {
-  color: brown;
+  color: var(--first-text-color);
   font-weight: 600;
 }

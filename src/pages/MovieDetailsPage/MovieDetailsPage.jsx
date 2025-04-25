@@ -49,6 +49,7 @@ export default function MovieDetailsPage() {
         <Link className={css.goBackLink} to={backLinkRef.current ?? "/"}>
           Go back
         </Link>
+        <div className={css.innerWrap}>
         <div className={css.movieInfoWrap}>
           <img
             src={`https://image.tmdb.org/t/p/w300/${posterPath}`}
@@ -91,6 +92,7 @@ export default function MovieDetailsPage() {
             </li>
           </ul>
           <Outlet />
+        </div>
         </div>
       </div>
     )

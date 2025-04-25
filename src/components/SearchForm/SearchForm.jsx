@@ -9,7 +9,7 @@ export default function SearchForm({ onSubmit }) {
 
   return (
     <form className={css.form} onSubmit={handleSubmit}>
-      <input className={css.input} type="text" name="movieName" />
+      <input className={css.input} type="text" name="movieName" placeholder="Enter the name of your film..." />
 
       <button type="submit">Search</button>
     </form>

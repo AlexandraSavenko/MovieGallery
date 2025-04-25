@@ -1,5 +1,5 @@
 .header {
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid var(--first-text-color);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -11,10 +11,10 @@
   gap: 1rem;
 }
 .link {
-  color: black;
+  color: var(--first-text-color);
 }
 .isActive {
-  color: brown;
+  color: var(--first-hover-color);
 }
 
 .homeIcon{
