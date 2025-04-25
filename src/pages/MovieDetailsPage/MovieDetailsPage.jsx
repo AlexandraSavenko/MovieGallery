@@ -80,12 +80,14 @@ export default function MovieDetailsPage() {
         <div className={css.addWrap}>
           <p>Additional information:</p>
           <ul className={css.addList}>
-            <NavLink className={linksActive} to="cast">
+            <li><NavLink className={linksActive} to="cast">
               Cast
             </NavLink>
-            <NavLink className={linksActive} to="reviews">
+            </li>
+            <li><NavLink className={linksActive} to="reviews">
               Reviews
             </NavLink>
+            </li>
           </ul>
           <Outlet />
         </div>

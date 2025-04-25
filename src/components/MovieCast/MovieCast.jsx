@@ -4,14 +4,13 @@ import { useParams } from "react-router-dom";
 import CastList from "../CastList/CastList";
 import css from "./MovieCast.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { movieCa } from "../../redux/MoviesSlice";
+import { cast } from "../../redux/MoviesSlice";
 
 export default function MovieCast() {
 
   const { movieId } = useParams();
 
-  const movieCast = useSelector(movieCa)
-  console.log(movieCast)
+  const movieCast = useSelector(cast)
   const dispatch = useDispatch()
   useEffect(() => {
     if (!movieId) return;
@@ -20,7 +19,7 @@ export default function MovieCast() {
   return (
     <div>
       <ul className={css.list}>
-        {movieCast.length > 0 ? (
+        {movieCast && movieCast.length > 0 ? (
           movieCast.map((actor) => (
             <li className={css.item} key={actor.id}>
               {<CastList info={actor} />}
