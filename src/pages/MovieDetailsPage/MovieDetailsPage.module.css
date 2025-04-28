@@ -15,6 +15,7 @@
 .movieInfoWrap img{
   width: 50vw;
   height: auto;
+  max-height: 60vh;
 }
 .addWrap {
   padding: 8px;
