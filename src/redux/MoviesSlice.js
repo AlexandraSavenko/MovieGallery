@@ -5,7 +5,14 @@ import { getInfo } from "../redux/MoviesOps";
 
 export const moviesArr = state => state.movies.moviesList;
 export const theMovie = state => state.movies.movieDetails;
-// export const theMovieData = createSelector(()=> {})
+export const theMovieData = createSelector([theMovie], m => {
+  if(!m){
+    return {genre: '', userScore: 0, posterPath: '' }
+  }
+  const genre = m.genres?.map((genre) => genre.name).join(', ') || '';
+  const userScore = Math.floor(m.vote_average || 0);
+  const posterPath = m.poster_path || '';
+  return {genre, userScore, posterPath }})
 export const cast = state => state.movies.movieCast;
 export const reviews = state => state.movies.movieReviews;
 

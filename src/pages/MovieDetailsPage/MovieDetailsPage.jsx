@@ -11,32 +11,32 @@ import css from "./MovieDetailsPage.module.css";
 // import NotFoundPage from "../NotFoundPage";
 import clsx from "clsx";
 import { useDispatch, useSelector } from "react-redux";
-import { theMovie } from "../../redux/MoviesSlice";
+import { theMovie, theMovieData } from "../../redux/MoviesSlice";
 
 
 export default function MovieDetailsPage() {
   const location = useLocation();
   const backLinkRef = useRef(location.state);
   const { movieId } = useParams();
-  const [genres, setGenres] = useState([]);
-  const [score, setScore] = useState(0);
-  const [posterPath, setPosterPath] = useState("");
+  // const [genres, setGenres] = useState([]);
+  // const [score, setScore] = useState(0);
+  // const [posterPath, setPosterPath] = useState("");
 
   const dispatch = useDispatch()
   const movieData = useSelector(theMovie)
-  
-  const movieInfo = () => {
-    if(!movieData) return;
-    const movieGen = movieData.genres.map((genre) => genre.name).join(", ");
-        setGenres(movieGen);
-        const userScore = Math.floor(movieData.vote_average);
-        setScore(`User score: ${userScore}%`);
-        setPosterPath(movieData.poster_path);
-  }
+  const {genre, userScore, posterPath} = useSelector(theMovieData)
+  // const movieInfo = () => {
+  //   if(!movieData) return;
+  //       const movieGen = movieData.genres.map((genre) => genre.name).join(", ");
+  //       setGenres(movieGen);
+  //       const userScore = Math.floor(movieData.vote_average);
+  //       setScore(`User score: ${userScore}%`);
+  //       setPosterPath(movieData.poster_path);
+  // }
   
   useEffect(() => {
     dispatch(getMovie(movieId));
-    movieInfo()
+    // movieInfo()
   }, [movieId]);
 
   function linksActive(props) {
@@ -63,7 +63,7 @@ export default function MovieDetailsPage() {
               </h2>
             </li>
             <li>
-              <p>{score}</p>
+              <p>{`User score: ${userScore}%`}</p>
             </li>
             <li>
               <h3>Overview</h3>
@@ -75,7 +75,7 @@ export default function MovieDetailsPage() {
               <h4>Geners</h4>
             </li>
             <li>
-              <p>{genres}</p>
+              <p>{genre}</p>
             </li>
           </ul>
         </div>
