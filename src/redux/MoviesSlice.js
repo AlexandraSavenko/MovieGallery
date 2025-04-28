@@ -1,10 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSelector, createSlice } from "@reduxjs/toolkit";
 import {fetchMoviesList} from './MoviesOps'
 import { getMovie } from "../redux/MoviesOps";
 import { getInfo } from "../redux/MoviesOps";
 
 export const moviesArr = state => state.movies.moviesList;
 export const theMovie = state => state.movies.movieDetails;
+// export const theMovieData = createSelector(()=> {})
 export const cast = state => state.movies.movieCast;
 export const reviews = state => state.movies.movieReviews;
 
