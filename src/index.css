@@ -5,6 +5,9 @@
   line-height: 1.5;
   font-weight: 400;
 
+  --title-font: 'Playfair Display', serif;
+  --body-font: 'Inter', sans-serif;
+
   color-scheme: light dark;
   color: var(--first-text-color);
   background-color: var(--first-background-color);
@@ -37,7 +40,13 @@
 }
 
 /*https://www.shecodes.io/palettes/633, /622*/
+body {
+  font-family: var(--body-font);
+}
 
+h1, h2, h3, .movie-title {
+  font-family: var(--title-font);
+}
 ul,
 li {
   list-style: none;

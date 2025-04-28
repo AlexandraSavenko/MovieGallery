@@ -7,12 +7,15 @@
 }
 .list {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   gap: 1rem;
 }
 .link {
   color: var(--first-text-color);
+  display: flex;
+  align-items: flex-end;
+line-height: 1;
 }
 .isActive {
   color: var(--first-hover-color);
